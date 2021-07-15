@@ -115,3 +115,42 @@ To compare movies by Rating, we need to do 3 things :
 2. Make an instance of the Comparator class.
 3. Call the overloaded sort() method, giving it both the list and the instance of the class that implements Comparator.
 
+Vector:
+
+Vector is like the dynamic array which can grow or shrink its size. Unlike array, we can store n-number of elements in it as there is no size limit. It is a part of Java Collection framework since Java 1.2. It is found in the java.util package and implements the List interface, so we can use all the methods of List interface here.
+
+It is recommended to use the Vector class in the thread-safe implementation only. If you don't need to use the thread-safe implementation, you should use the ArrayList, the ArrayList will perform better in such case.
+
+The Iterators returned by the Vector class are fail-fast. In case of concurrent modification, it fails and throws the ConcurrentModificationException.
+
+Ways to navigate on vector
+
+    //simple method:
+    for(String s : vect){
+       System.out.println(s);
+    }
+    
+    //How else can we navigate the vector
+    ListIterator<String> iterator = vect.listIterator();
+    while (iterator.hasNext()){
+       System.out.println(iterator.next());
+    }
+    
+    //How else can we navigate the vector 2
+    Enumeration<String> enumeration = vect.elements();
+    while (enumeration.hasMoreElements()){
+       System.out.println(enumeration.nextElement());
+    }
+
+
+
+Stack:
+
+- The vector class is a superclass of the stack class. 
+- Stack data is a data type represented by the LIFO(Last in First Out) structure.
+- empty() Checks if the Stack is empty.
+- search() The location of the value given as a parameter by the method * (with reference to the starting point from top to bottom) is returned as *integer.
+- pop() It takes the value at the top of the stack and returns it.
+- peek() reads at the top of the stack but does not retrieve it from the stack.
+
+
