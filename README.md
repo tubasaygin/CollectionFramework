@@ -103,3 +103,15 @@ TreeSet:
 - TreeSet internally uses a TreeMap to store elements.
 - TreeSet class is not thread-safe. You must explicitly synchronize concurrent access to a TreeSet in a multi-threaded environment.
 
+Comparator Interface:
+
+Unlike Comparable, Comparator is external to the element type we are comparing. It’s a separate class. We create multiple separate classes (that implement Comparator) to compare by different members.
+
+Collections class has a second sort() method and it takes Comparator. The sort() method invokes the compare() to sort objects.
+
+To compare movies by Rating, we need to do 3 things : 
+
+1. Create a class that implements Comparator (and thus the compare() method that does the work previously done by compareTo()).
+2. Make an instance of the Comparator class.
+3. Call the overloaded sort() method, giving it both the list and the instance of the class that implements Comparator.
+
