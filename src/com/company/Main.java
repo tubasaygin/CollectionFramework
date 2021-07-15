@@ -170,5 +170,51 @@ public class Main {
 		for(String s : listComp){
 			System.out.println(s);
 		}
+
+		System.out.println("************************************************");
+		//Vector:
+		Vector<String> vect = new Vector<>();
+		vect.add("Java");
+		vect.add("Python");
+		vect.add("Python");
+		vect.add("C++");
+		vect.add("Go");
+		vect.add("Php");
+
+		for(String s : vect){
+			System.out.println(s);
+		}
+		//How else can we navigate the vector
+		/*
+		ListIterator<String> iterator = vect.listIterator();
+		while (iterator.hasNext()){
+			System.out.println(iterator.next());
+		}
+		*/
+		//How else can we navigate the vector 2
+		/*
+		Enumeration<String> enumeration = vect.elements();
+		while (enumeration.hasMoreElements()){
+			System.out.println(enumeration.nextElement());
+		}
+	    */
+		System.out.println("************************************************");
+		//Stack:
+		Stack<String> stack = new Stack<>();
+		stack.push("Java");
+		stack.push("Python");
+		stack.push("C++");
+		stack.push("Php");
+
+		Enumeration<String> enumeration = stack.elements();
+		while (enumeration.hasMoreElements()){
+			System.out.println(enumeration.nextElement());
+		}
+		System.out.println("Last element of stack : " + stack.peek()); // last element of stack
+		System.out.println("Last element being deleted.. "+ stack.pop()); //remove last element
+
+		for(String s : stack){
+			System.out.println(s);
+		}
 	}
 }
