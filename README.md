@@ -56,3 +56,50 @@ for(Map.Entry<Character, Integer> entry : frequence.entrySet()){
 	System.out.println("Character : "+entry.getKey() + " ----> " + entry.getValue());
 }
 ```
+
+The Comparable Interface:
+
+The Comparable interface defines the compareTo method used to compare objects. If a class implements the Comparable interface, objects created from that class can be sorted using Java's sorting algorithms
+
+In order for our object lists  to be sorted, that is, to use the Collections.sort() method, we need to implement the Comparable:
+
+    class Player implements Comparable<Player>{
+    	private String name;
+    	private int id;
+    
+    	public Player(String name, int id) {
+    		this.name = name;
+    		this.id = id;
+    	}
+    
+    	@Override
+    	public String toString() {
+    		return "Player{" +
+    				"name='" + name + '\'' +
+    				", id=" + id +
+    				'}';
+    	}
+    
+    	@Override
+    	public int compareTo(Player o) {
+    		if(this.id < o.id){
+    			return -1;
+    		}else if(this.id > o.id){
+    			return 1;
+    		}
+    		return 0;
+    
+    	}
+    }
+    
+
+Note : If we want to get data sorted without using Comparable, we can use TreeSet.
+
+TreeSet:
+
+- TreeSet cannot contain duplicate
+- The elements in a TreeSet are sorted based on their natural order, or based on a custom Comparator that is supplied at the time of creation of the TreeSet.
+- TreeSet cannot contain null value.
+- TreeSet internally uses a TreeMap to store elements.
+- TreeSet class is not thread-safe. You must explicitly synchronize concurrent access to a TreeSet in a multi-threaded environment.
+
