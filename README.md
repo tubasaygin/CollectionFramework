@@ -47,3 +47,12 @@ Note: We can also create these two functions in a short way using Generate.
 ---
 
 Note: If we don't write the equals function but only the hashCode function, our code will still work incorrectly.
+
+---
+
+```
+//How to print map elements:
+for(Map.Entry<Character, Integer> entry : frequence.entrySet()){
+	System.out.println("Character : "+entry.getKey() + " ----> " + entry.getValue());
+}
+```
