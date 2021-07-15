@@ -80,6 +80,15 @@ class Player implements Comparable<Player>{
 	}
 }
 
+class ComparatorExample implements Comparator<String>{
+
+	@Override
+	public int compare(String o1, String o2) {
+		return -o1.compareTo(o2);  //Sort from largest to smallest
+
+	}
+}
+
 public class Main {
 
     public static void main(String[] args) {
@@ -147,5 +156,19 @@ public class Main {
 			System.out.println(s);
 		}
 
-    }
+		System.out.println("************************************************");
+		//Comparator :
+		List<String> listComp = new ArrayList<>();
+
+		listComp.add("Java");
+		listComp.add("Python");
+		listComp.add("C++");
+		listComp.add("Go");
+		listComp.add("Php");
+
+		Collections.sort(listComp, new ComparatorExample());
+		for(String s : listComp){
+			System.out.println(s);
+		}
+	}
 }
