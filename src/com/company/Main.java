@@ -51,6 +51,35 @@ class Person{
 	}
 }
 
+class Player implements Comparable<Player>{
+	private String name;
+	private int id;
+
+	public Player(String name, int id) {
+		this.name = name;
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Player{" +
+				"name='" + name + '\'' +
+				", id=" + id +
+				'}';
+	}
+
+	@Override
+	public int compareTo(Player o) {
+		if(this.id < o.id){
+			return -1;
+		}else if(this.id > o.id){
+			return 1;
+		}
+		return 0;
+
+	}
+}
+
 public class Main {
 
     public static void main(String[] args) {
@@ -85,6 +114,37 @@ public class Main {
 		//How to print map elements:
 		for(Map.Entry<Character, Integer> entry : frequence.entrySet()){
 			System.out.println("Character : "+entry.getKey() + " ----> " + entry.getValue());
+		}
+
+
+		System.out.println("************************************************");
+		//Sorting list :
+
+		List<String> list = new ArrayList<>();
+
+		list.add("Java");
+		list.add("Python");
+		list.add("C++");
+		list.add("Go");
+		list.add("Php");
+
+		Collections.sort(list);
+
+		for(String s : list){
+			System.out.println(s);
+		}
+
+		System.out.println("************************************************");
+
+		List<Player> listPlayer = new ArrayList<>();
+		listPlayer.add(new Player("Tuba", 5));
+		listPlayer.add(new Player("Ahmet", 1));
+		listPlayer.add(new Player("Gamze", 12));
+		listPlayer.add(new Player("Melek", 2));
+
+		Collections.sort(listPlayer);
+		for(Player s: listPlayer){
+			System.out.println(s);
 		}
 
     }
