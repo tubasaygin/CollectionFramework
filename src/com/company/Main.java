@@ -1,8 +1,6 @@
 package com.company;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 class Person{
 	private Long id;
@@ -56,7 +54,7 @@ class Person{
 public class Main {
 
     public static void main(String[] args) {
-
+		// Object In Map
 		Person p1 = new Person(12345L, "Tuba", "Saygın");
 		Person p2 = new Person(12345L, "Tuba", "Saygın");
 		Person p3 = new Person(12345L, "Tuba", "Saygın");
@@ -67,6 +65,27 @@ public class Main {
 		liste.put(p3, "TUBA");
 
 		System.out.println(liste.size());
+		System.out.println("************************************************");
+		//finding the letter count of a sentence using Map:
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Sentence : ");
+		String sentence = scanner.nextLine();
+
+		Map<Character, Integer> frequence = new TreeMap<>();
+
+		for(int i = 0; i<sentence.length(); i++){
+			char c = sentence.charAt(i);
+			if(frequence.containsKey(c)){
+				frequence.replace(c, (frequence.get(c) + 1));
+			}else{
+				frequence.put(c,1);
+			}
+
+		}
+		//How to print map elements:
+		for(Map.Entry<Character, Integer> entry : frequence.entrySet()){
+			System.out.println("Character : "+entry.getKey() + " ----> " + entry.getValue());
+		}
 
     }
 }
