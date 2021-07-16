@@ -155,4 +155,127 @@ Stack:
 - pop() It takes the value at the top of the stack and returns it.
 - peek() reads at the top of the stack but does not retrieve it from the stack.
 
+Queue :
+
+Queue is the data structure that holds the objects together with the FIFO (first in-first out) structure. So the object we add first comes out first.
+
+In a Queue data structure, data is accessed from two ends. Adding (enqueue) elements from one end and removing (dequeue) elements from the other end are done.
+
+add() --> Adds the element to the queue.
+
+offer() --> Adds the element to the queue .
+
+remove() --> Removes the first element of the queue. It throws an error if the queue is empty.
+
+poll() --> Removes the first element of the queue. If the queue is empty, a null reference is returned.
+
+element() -->The first element of the queue returns.  It throws an error if the queue is empty.
+
+peek() --> The first element of the queue returns.  If the queue is empty, a null reference is returned.
+
+How to create a queue?
+
+    Queue<String> queue = new LinkedList<>();
+
+PriorityQueue :
+
+We cannot directly create a queue for the solution of some problems. For example, during the landing of aircraft, there may be aircraft that need to land urgently. Or, a different priority can be set for patients waiting during the examination.
+
+In such scenarios, a solution is produced with a priority queue. The priority order is determined and applied during the program.
+
+In strings, highest priority is alphabetically leading string, integers highest priority is smallest number
+
+Note: Even if the elements are sorted in priority order with priority queue, we can see it mixed up when we print it with the loop.
+
+    Queue<Integer> pqueue = new PriorityQueue<>();
+    
+    pqueue.offer(200);
+    pqueue.offer(4);
+    pqueue.offer(1);
+    pqueue.offer(10);
+    pqueue.offer(0);
+    
+    for (Integer i : pqueue){
+       System.out.println(i);
+    }
+
+Output :
+
+0
+
+1
+
+4
+
+200
+
+10
+
+We can see the order of the queue as we extract elements:
+
+    while (!pqueue.isEmpty()){
+       System.out.println("Element is removing... "+ pqueue.poll());
+    }
+    
+
+Output:
+
+Element is removing... 0
+
+Element is removing... 1
+
+Element is removing... 4
+
+Element is removing... 10
+
+Element is removing... 200
+
+How do we determine the priority of the objects we produce from the class we created?
+
+We can control this by implementing the Comparable interface in the class and overriding the compareTo() method.
+
+Iterator vs ListIterator:
+
+ListIterator is a subinterface of Iterator interface. The major difference between Iterator and ListIterator is that Iterator can only move items in the collection forward. ListIterator, on the other hand, can move items in a collection both forward and backward.
+
+Creating our own iterable classes
+
+    class IterableClass implements Iterable<String> {
+       private ArrayList<String> channel_list = new ArrayList<>();
+    
+       public IterableClass(String[] channels){
+          for(String channel : channels){
+             System.out.println(channel);
+          }
+       }
+    
+       private int index = 0;
+    
+       @Override
+       public Iterator<String> iterator() {
+          return new IteratorRadio();
+       }
+    
+       public class IteratorRadio implements java.util.Iterator<String>{
+    
+          @Override
+          public boolean hasNext() {
+             if(index<channel_list.size()){
+                return true;
+             }else{
+                return false;
+             }
+          }
+    
+          @Override
+          public String next() {
+             String value = channel_list.get(index);
+             index++;
+             return value;
+          }
+       }
+    }
+    
+
+
 
