@@ -1,6 +1,8 @@
 # CollectionFramework
 The Collection in Java is a framework that provides an architecture to store and manipulate the group of objects.
 
+![Collection-Framework-1](https://user-images.githubusercontent.com/70032538/125940628-787bdc5a-510f-4c48-9b40-18901697682b.png)
+
 
 What is hasCode() and equals() ? 
 
