@@ -89,10 +89,103 @@ class ComparatorExample implements Comparator<String>{
 	}
 }
 
+class Patient implements Comparable<Patient>{
+
+	private String name;
+	private String disease;
+	private int priority;
+
+	public Patient(String name, String disease) {
+		this.name = name;
+		this.disease = disease;
+		if(this.disease.equals("appendicitis")){
+			this.priority = 3;
+		}else if(this.disease.equals("burn")){
+			this.priority = 2;
+		}else{
+			this.priority = 1;
+		}
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDisease() {
+		return disease;
+	}
+
+	public void setDisease(String disease) {
+		this.disease = disease;
+	}
+
+	@Override
+	public int compareTo(Patient o) {
+		if(this.priority>o.priority){
+			return -1;
+		}else if(this.priority < o.priority){
+			return 1;
+		}else{
+			return 0;
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Patient{" +
+				"name='" + name + '\'' +
+				", disease='" + disease + '\'' +
+				", priority=" + priority +
+				'}';
+	}
+}
+
+class IterableClass implements Iterable<String> {
+	private ArrayList<String> channel_list = new ArrayList<>();
+
+	public IterableClass(String[] channels){
+		for(String channel : channels){
+			System.out.println(channel);
+		}
+	}
+
+	private int index = 0;
+
+	@Override
+	public Iterator<String> iterator() {
+		return new IteratorRadio();
+	}
+
+	public class IteratorRadio implements java.util.Iterator<String>{
+
+		@Override
+		public boolean hasNext() {
+			if(index<channel_list.size()){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		@Override
+		public String next() {
+			String value = channel_list.get(index);
+			index++;
+			return value;
+		}
+	}
+}
+
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 		// Object In Map
+
 		Person p1 = new Person(12345L, "Tuba", "Saygın");
 		Person p2 = new Person(12345L, "Tuba", "Saygın");
 		Person p3 = new Person(12345L, "Tuba", "Saygın");
@@ -198,6 +291,7 @@ public class Main {
 			System.out.println(enumeration.nextElement());
 		}
 	    */
+
 		System.out.println("************************************************");
 		//Stack:
 		Stack<String> stack = new Stack<>();
@@ -216,5 +310,136 @@ public class Main {
 		for(String s : stack){
 			System.out.println(s);
 		}
+		System.out.println("************************************************");
+		//Polindrome word check program with using Stack.
+
+		Stack<Character> word = new Stack<>();
+		Scanner scanner1 = new Scanner(System.in);
+		System.out.println("Please, input the word : ");
+		String wordInput = scanner1.nextLine();
+
+		for(int i = 0; i<wordInput.length(); i++){
+			word.push(wordInput.charAt(i));
+		}
+		String wordCheck = "";
+
+		while(word.size()>0){
+			wordCheck  += word.pop();
+
+		}
+		if(wordInput.equals(wordCheck)){
+			System.out.println("This word is a Polindrome.");
+		}else{
+			System.out.println("This word is not a Polindrome");
+		}
+
+		System.out.println("************************************************");
+		//Queue :
+		Queue<String> queue = new LinkedList<>();
+		queue.offer("Java");
+		queue.offer("Python");
+		queue.offer("Php");
+		queue.offer("C++");
+
+		System.out.println("The first element of the queue : "+ queue.peek());
+
+		for(String s: queue){
+			System.out.println(s);
+		}
+
+		System.out.println("Element is removing .. " + queue.poll());
+		//FIFO : First in First out.
+		for(String s: queue){
+			System.out.println(s);
+		}
+
+		System.out.println("************************************************");
+		//Ramadan pita queue program using Queue
+		Queue<String> pitaQueue = new LinkedList<>();
+		pitaQueue.offer("Oliver");
+		pitaQueue.offer("Jack");
+		pitaQueue.offer("Harry");
+		pitaQueue.offer("Jacob");
+		pitaQueue.offer("Charlie");
+		pitaQueue.offer("Thomas");
+		pitaQueue.offer("George");
+		pitaQueue.offer("Oscar");
+		pitaQueue.offer("James");
+		pitaQueue.offer("William");
+
+		//Random number : [1-10]
+		Random random = new Random();
+		int number = random.nextInt(10) + 1;
+		System.out.println("Pitas are being prepared...");
+		Thread.sleep(3000);
+		System.out.println("Pitas prepared ... : "+ number);
+		while(number != 0){
+			System.out.println(pitaQueue.poll() + " take a pita");
+			number--;
+			Thread.sleep(1000);
+		}
+
+		System.out.println("Pitas is finished.");
+
+
+		System.out.println("************************************************");
+		//PriorityQueue:
+		Queue<Integer> pqueue = new PriorityQueue<>();
+
+		pqueue.offer(200);
+		pqueue.offer(4);
+		pqueue.offer(1);
+		pqueue.offer(10);
+		pqueue.offer(0);
+
+		for (Integer i : pqueue){
+			System.out.println(i);
+		}
+
+		while (!pqueue.isEmpty()){
+			System.out.println("Element is removing... "+ pqueue.poll());
+		}
+
+		//Object with priorityqueue:
+		Queue<Player> playerpqueue = new PriorityQueue<>();
+		playerpqueue.offer(new Player("Jack", 10));
+		playerpqueue.offer(new Player("Oliver", 1));
+		playerpqueue.offer(new Player("Jhonson", 200));
+		playerpqueue.offer(new Player("Harry" , 2));
+
+		while(!playerpqueue.isEmpty()){
+			System.out.println("Element is removing ... : "+ playerpqueue.poll());
+		}
+
+		//Emergency service application with Comparable Interface
+		/*
+		appendicitis : highest priority
+		burn : medium priority
+		headache : lowest priority
+		 */
+		Queue<Patient> patientQueue = new PriorityQueue<>();
+		patientQueue.offer(new Patient("Jack Glory" , "appendicitis"));
+		patientQueue.offer(new Patient("Harry P." , "burn"));
+		patientQueue.offer(new Patient("Oliver" , "headache"));
+		patientQueue.offer(new Patient("Mary" , "appendicitis"));
+		patientQueue.offer(new Patient("Allison" , "headache"));
+		patientQueue.offer(new Patient("Jackson" , "burn"));
+		patientQueue.offer(new Patient("Jim" , "appendicitis"));
+
+		int i = 1;
+		while(!patientQueue.isEmpty()){
+			System.out.println(i + ". patient : " + patientQueue.poll());
+			i++;
+		}
+
+		System.out.println("************************************************");
+		//Creating our own iterable class:
+		String[] channels = {"Radio Viva","Radio Fenomen", "Radyo Kral", "Kral Pop"};
+
+		IterableClass radio = new IterableClass(channels);
+		for(String s: radio) {
+			System.out.println(s);
+		}
+
 	}
 }
